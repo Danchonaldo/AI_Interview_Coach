@@ -1,0 +1,27 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# local database
+backend/data/
+*.db
+
+# node / frontend
+node_modules/
+frontend/dist/
+
+# eval run outputs (raw model responses can be large); keep curated results only
+eval/runs/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

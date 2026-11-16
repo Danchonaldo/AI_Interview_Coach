@@ -1,0 +1,6 @@
+question 1: Tell me about a time you found an unexpected insight in a dataset. What did you do with it?
+evaluation scores q1: {'Relevance': '3/5', 'Structure (STAR)': '4/5', 'Specificity': '3/5'}
+answered:  2/6 answered
+overall score: 2.17/5
+history rows: 2
+UI SMOKE TEST PASSED

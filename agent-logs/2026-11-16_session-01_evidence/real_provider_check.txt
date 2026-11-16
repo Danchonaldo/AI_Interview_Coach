@@ -1,0 +1,3 @@
+$ LLM_PROVIDER=anthropic (no ANTHROPIC_API_KEY set) uvicorn on :8001, separate temp DB
+GET /health -> {"status":"ok","llm_provider":"anthropic","is_mock":false,"llm_ready":false,"detail":"ANTHROPIC_API_KEY is not set"}
+POST /sessions -> {"detail":"LLM provider not configured: ANTHROPIC_API_KEY is not set"} [HTTP 503]

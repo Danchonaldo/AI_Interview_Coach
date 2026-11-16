@@ -1,0 +1,55 @@
+$ curl -s http://127.0.0.1:5173/api/health   (through the Vite proxy)
+{"status":"ok","llm_provider":"mock","is_mock":true,"llm_ready":true,"detail":null}
+$ curl -s -X POST /sessions {"role":"marketing_intern","language":"en","level":"junior","num_questions":8}
+id 1 status in_progress provider mock questions 8
+  1 behavioral Tell me about a campaign or project you helped promote. What was your 
+  2 technical Which metrics would you track to judge whether an Instagram campaign s
+  3 situational A post you scheduled receives negative comments within an hour. What d
+  4 technical How would you define a target audience for a new student-focused produ
+  5 behavioral Describe a time you had to meet a tight deadline while working in a te
+  6 motivation Why are you interested in marketing, and which brand's marketing do yo
+  7 situational You have a budget of $500 to raise sign-ups for a university event. Ho
+  8 behavioral Tell me about a time you took ownership of a task from start to finish
+$ curl -s -X POST /questions/1/answers
+{
+    "id": 1,
+    "question_id": 1,
+    "text": "During my university project the situation was low event attendance. My task was to promote a career fair. I created an Instagram campaign and I used Canva and Meta Ads. As a result sign-ups increased by 40%.",
+    "evaluation": {
+        "relevance": 4,
+        "structure": 4,
+        "specificity": 3,
+        "average": 3.67,
+        "feedback": "[MOCK evaluation, not AI] Your answer has 38 words. All STAR elements are present. Good use of concrete numbers.",
+        "improved_answer": "[MOCK template] Situation: [where and when]. Task: [what needed to be done]. Action: I [specific steps and tools]. Result: [measurable outcome, e.g. +[number]%] and [what I learned].",
+        "top_fix": "Tighten the answer and stress your own role.",
+        "provider": "mock",
+        "is_mock": true
+    },
+    "created_at": "2026-11-16T17:10:33.249409Z"
+}
+$ curl -s -X POST /sessions/1/finish
+status finished
+{
+ "answered": 1,
+ "total_questions": 8,
+ "averages": {
+  "relevance": 4.0,
+  "structure": 4.0,
+  "specificity": 3.0
+ },
+ "overall": 3.67,
+ "strongest_criterion": "relevance",
+ "weakest_criterion": "specificity",
+ "priority_fixes": [
+  "Tighten the answer and stress your own role."
+ ],
+ "best_question_id": 1,
+ "weakest_question_id": 1
+}
+$ curl -s /sessions (history)
+[{"id":1,"role":"marketing_intern","role_label":"Marketing Intern","language":"en","level":"junior","status":"finished","provider":"mock","created_at":"2026-11-16T17:10:33.143750Z","finished_at":"2026-11-16T17:10:33.287676Z","answered":1,"total_questions":8,"overall":3.67}]
+$ error cases:
+GET /sessions/999 -> 404
+POST /sessions bad role -> 422
+POST answer to finished session -> 409

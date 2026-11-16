@@ -1,0 +1,21 @@
+$ python -m pytest eval -q
+...                                                                      [100%]
+3 passed in 0.02s
+$ python eval/run_eval.py --data eval/data/format_example.jsonl --provider mock   (format example has placeholder 0 scores -> must be rejected)
+eval/data/format_example.jsonl:1: human.relevance must be an int 1-5
+$ pipeline smoke run on a temp copy with placeholder 3s (NOT human labels), mock provider
+FORMAT-EXAMPLE-1: 2/2 ok
+FORMAT-EXAMPLE-2: 2/2 ok
+# Grader evaluation — mock — 20261116T171143Z
+
+> MOCK RUN: pipeline check only, NOT an AI quality result.
+Items: 2/2 · repeats: 2 · failures: 0
+All criteria within ±1 of human: **0.5** (target ≥ 0.80)
+
+| Criterion | within ±1 | exact | MAE | bias | stability (spread ≤1) |
+|---|---|---|---|---|---|
+| relevance | 1.0 | 0.0 | 1 | 0 | 1.0 |
+| structure | 0.5 | 0.5 | 1 | -1 | 1.0 |
+| specificity | 0.5 | 0.5 | 1 | -1 | 1.0 |
+
+written to <tmp>/evalruns/20261116T171143Z_mock

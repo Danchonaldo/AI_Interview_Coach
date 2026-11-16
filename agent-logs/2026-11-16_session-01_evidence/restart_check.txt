@@ -1,0 +1,2 @@
+$ kill backend; restart uvicorn; GET /sessions/1
+after restart: id 1 status finished answered 1 overall 3.67 created_at 2026-11-16T17:10:33.143750Z

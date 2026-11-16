@@ -1,0 +1,43 @@
+$ cd backend && python -m pytest -v
+plugins: anyio-4.16.0
+collecting ... collected 22 items
+
+tests/test_api.py::test_health_reports_mock PASSED                       [  4%]
+tests/test_api.py::test_full_flow PASSED                                 [  9%]
+tests/test_api.py::test_russian_and_junior PASSED                        [ 13%]
+tests/test_api.py::test_reanswer_replaces PASSED                         [ 18%]
+tests/test_api.py::test_validation_and_errors PASSED                     [ 22%]
+tests/test_api.py::test_persistence_across_restart PASSED                [ 27%]
+tests/test_api.py::test_llm_failure_returns_502_and_saves_nothing PASSED [ 31%]
+tests/test_llm.py::test_extract_json_plain_fenced_and_prose PASSED       [ 36%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[0] PASSED          [ 40%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[6] PASSED          [ 45%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[3.5] PASSED        [ 50%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[True] PASSED       [ 54%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[abc] PASSED        [ 59%]
+tests/test_llm.py::test_evaluation_rejects_bad_scores[None] PASSED       [ 63%]
+tests/test_llm.py::test_evaluation_requires_all_fields PASSED            [ 68%]
+tests/test_llm.py::test_question_set_bounds PASSED                       [ 72%]
+tests/test_llm.py::test_prompted_provider_retries_once_then_succeeds PASSED [ 77%]
+tests/test_llm.py::test_prompted_provider_fails_after_retry PASSED       [ 81%]
+tests/test_llm.py::test_prompted_provider_questions_trimmed_to_n PASSED  [ 86%]
+tests/test_llm.py::test_prompt_contains_rubric_and_isolates_answer PASSED [ 90%]
+tests/test_llm.py::test_mock_is_deterministic_and_labelled PASSED        [ 95%]
+tests/test_llm.py::test_get_provider_config_errors PASSED                [100%]
+
+============================== 22 passed in 0.37s ==============================
+
+$ python -m pytest eval -v
+eval/test_metrics.py::test_agreement PASSED                              [ 33%]
+eval/test_metrics.py::test_stability PASSED                              [ 66%]
+eval/test_metrics.py::test_all_criteria_within_1 PASSED                  [100%]
+
+============================== 3 passed in 0.02s ===============================
+
+$ cd frontend && npm run build
+computing gzip size...
+dist/index.html                   0.43 kB │ gzip:  0.29 kB
+dist/assets/index-2RkiPyaY.css   14.37 kB │ gzip:  3.78 kB
+dist/assets/index-Dm2zUi-r.js   232.37 kB │ gzip: 72.23 kB
+
+✓ built in 198ms
